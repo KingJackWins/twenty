@@ -13,13 +13,18 @@ export const twentyFetch = async (
   const baseUrl = readRequiredEnv('TWENTY_API_URL');
   const apiKey = readRequiredEnv('TWENTY_API_KEY');
 
+  const callerHeaders =
+    init.headers instanceof Headers
+      ? Object.fromEntries(init.headers.entries())
+      : (init.headers as Record<string, string> | undefined) ?? {};
+
   const response = await fetch(`${baseUrl}${path}`, {
     cache: 'no-store',
     ...init,
     headers: {
       Authorization: `Bearer ${apiKey}`,
       Accept: 'application/json',
-      ...(init.headers ?? {}),
+      ...callerHeaders,
     },
   });
 

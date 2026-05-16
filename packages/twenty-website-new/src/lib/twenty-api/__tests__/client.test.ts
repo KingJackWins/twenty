@@ -4,7 +4,6 @@ describe('twentyFetch', () => {
   const ORIGINAL_ENV = process.env;
 
   beforeEach(() => {
-    jest.resetModules();
     process.env = {
       ...ORIGINAL_ENV,
       TWENTY_API_URL: 'https://twenty.example.com',
