@@ -1,5 +1,5 @@
-import type { MarketplacePartner } from '@/app/[locale]/partners-marketplace/marketplace.data';
 import { twentyFetch } from './client';
+import type { MarketplacePartner } from './partner-types';
 
 type ApiPartner = {
   id: string;

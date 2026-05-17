@@ -2,7 +2,7 @@ import { Container } from '@/design-system/components';
 import { theme } from '@/theme';
 import { styled } from '@linaria/react';
 
-import type { MarketplacePartner } from '../marketplace.data';
+import type { MarketplacePartner } from '@/lib/twenty-api';
 import { PartnerCard } from './PartnerCard';
 
 const Section = styled.section`

@@ -3,7 +3,7 @@ import { renderToStaticMarkup } from 'react-dom/server';
 import { SOURCE_LOCALE } from 'twenty-shared/translations';
 
 import { setServerI18n } from '@/lib/i18n/utils/set-server-i18n';
-import type { MarketplacePartner } from '../marketplace.data';
+import type { MarketplacePartner } from '@/lib/twenty-api';
 import { PartnerCard } from '../components/PartnerCard';
 
 beforeAll(() => {

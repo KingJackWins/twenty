@@ -5,7 +5,7 @@ import type {
   DeploymentExpertise,
   ServedGeo,
   SpokenLanguage,
-} from '../marketplace.data';
+} from '@/lib/twenty-api';
 
 export const SERVED_GEO_LABELS: Record<ServedGeo, MessageDescriptor> = {
   EUROPE: msg`Europe`,

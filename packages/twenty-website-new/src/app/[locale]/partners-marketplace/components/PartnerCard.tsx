@@ -5,7 +5,7 @@ import { theme } from '@/theme';
 import { styled } from '@linaria/react';
 import type { CSSProperties } from 'react';
 
-import type { MarketplacePartner } from '../marketplace.data';
+import type { MarketplacePartner } from '@/lib/twenty-api';
 import { PartnerAvatar } from './PartnerAvatar';
 import { PartnerChipRow } from './PartnerChipRow';
 import {
