@@ -19,28 +19,22 @@ describe('twentyFetch', () => {
   it('throws a clear error when TWENTY_API_URL is missing', async () => {
     delete process.env.TWENTY_API_URL;
 
-    await expect(twentyFetch('/rest/people')).rejects.toThrow(
-      /TWENTY_API_URL/,
-    );
+    await expect(twentyFetch('/rest/people')).rejects.toThrow(/TWENTY_API_URL/);
   });
 
   it('throws a clear error when TWENTY_API_KEY is missing', async () => {
     delete process.env.TWENTY_API_KEY;
 
-    await expect(twentyFetch('/rest/people')).rejects.toThrow(
-      /TWENTY_API_KEY/,
-    );
+    await expect(twentyFetch('/rest/people')).rejects.toThrow(/TWENTY_API_KEY/);
   });
 
   it('sends Authorization: Bearer header and returns parsed JSON on 2xx', async () => {
-    const fetchSpy = jest
-      .spyOn(globalThis, 'fetch')
-      .mockResolvedValue(
-        new Response(JSON.stringify({ ok: true }), {
-          status: 200,
-          headers: { 'content-type': 'application/json' },
-        }),
-      );
+    const fetchSpy = jest.spyOn(globalThis, 'fetch').mockResolvedValue(
+      new Response(JSON.stringify({ ok: true }), {
+        status: 200,
+        headers: { 'content-type': 'application/json' },
+      }),
+    );
 
     const result = await twentyFetch('/rest/people');
 
@@ -56,9 +50,9 @@ describe('twentyFetch', () => {
   });
 
   it('throws on non-2xx with status, path, and body snippet', async () => {
-    jest.spyOn(globalThis, 'fetch').mockResolvedValue(
-      new Response('Workspace not found', { status: 404 }),
-    );
+    jest
+      .spyOn(globalThis, 'fetch')
+      .mockResolvedValue(new Response('Workspace not found', { status: 404 }));
 
     await expect(twentyFetch('/rest/people')).rejects.toThrow(
       /404.*\/rest\/people.*Workspace not found/s,
@@ -66,9 +60,9 @@ describe('twentyFetch', () => {
   });
 
   it('lets the caller override cache and merges headers', async () => {
-    const fetchSpy = jest.spyOn(globalThis, 'fetch').mockResolvedValue(
-      new Response('{}', { status: 200 }),
-    );
+    const fetchSpy = jest
+      .spyOn(globalThis, 'fetch')
+      .mockResolvedValue(new Response('{}', { status: 200 }));
 
     await twentyFetch('/rest/people', {
       cache: 'force-cache',

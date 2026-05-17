@@ -19,9 +19,7 @@ describe('PartnerCard', () => {
   it('renders the partner name as the article heading', () => {
     const html = renderCard(0);
     const partner = MARKETPLACE_PARTNERS[0];
-    expect(html).toMatch(
-      new RegExp(`<h3[^>]*>${partner.name}<\/h3>`, 'i'),
-    );
+    expect(html).toMatch(new RegExp(`<h3[^>]*>${partner.name}</h3>`, 'i'));
   });
 
   it('renders the country eyebrow with primary country', () => {

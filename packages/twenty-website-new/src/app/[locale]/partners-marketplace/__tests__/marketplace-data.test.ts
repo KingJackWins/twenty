@@ -31,9 +31,7 @@ describe('MARKETPLACE_PARTNERS seed data', () => {
   });
 
   it('covers every served-geo option at least once', () => {
-    const covered = new Set(
-      MARKETPLACE_PARTNERS.flatMap((p) => p.servedGeos),
-    );
+    const covered = new Set(MARKETPLACE_PARTNERS.flatMap((p) => p.servedGeos));
     for (const geo of ALL_GEOS) {
       expect(covered.has(geo)).toBe(true);
     }

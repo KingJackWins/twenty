@@ -16,7 +16,7 @@ export const twentyFetch = async (
   const callerHeaders =
     init.headers instanceof Headers
       ? Object.fromEntries(init.headers.entries())
-      : (init.headers as Record<string, string> | undefined) ?? {};
+      : ((init.headers as Record<string, string> | undefined) ?? {});
 
   const response = await fetch(`${baseUrl}${path}`, {
     cache: 'no-store',

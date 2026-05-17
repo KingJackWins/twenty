@@ -49,9 +49,7 @@ export function MarketplaceHeader() {
           </HeadingPart>
         </Eyebrow>
         <Heading size="lg" weight="light">
-          <HeadingPart fontFamily="serif">
-            {i18n._(msg`Find your`)}
-          </HeadingPart>{' '}
+          <HeadingPart fontFamily="serif">{i18n._(msg`Find your`)}</HeadingPart>{' '}
           <HeadingPart fontFamily="sans">
             {i18n._(msg`Twenty partner`)}
           </HeadingPart>

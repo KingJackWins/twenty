@@ -1,7 +1,48 @@
+import { fetchCommunityStats } from '@/lib/community/fetch-community-stats';
+import {
+  getRouteI18n,
+  type LocaleRouteParams,
+} from '@/lib/i18n/utils/get-route-i18n';
+import { mergeSocialLinkLabels } from '@/lib/community/merge-social-link-labels';
+import { Menu, MENU_DATA } from '@/sections/Menu';
+import { theme } from '@/theme';
 import { buildRouteMetadata } from '@/lib/seo';
+
+import { MARKETPLACE_PARTNERS } from './marketplace.data';
+import { MarketplaceGrid, MarketplaceHeader } from './components';
 
 export const generateMetadata = buildRouteMetadata('partnersMarketplace');
 
-export default function PartnersMarketplacePage() {
-  return <main>partners marketplace — stub</main>;
+type PartnersMarketplacePageProps = {
+  params: Promise<LocaleRouteParams>;
+};
+
+export default async function PartnersMarketplacePage({
+  params,
+}: PartnersMarketplacePageProps) {
+  const [, stats] = await Promise.all([
+    getRouteI18n(params),
+    fetchCommunityStats(),
+  ]);
+  const menuSocialLinks = mergeSocialLinkLabels(MENU_DATA.socialLinks, stats);
+
+  return (
+    <>
+      <Menu.Root
+        backgroundColor={theme.colors.primary.background[100]}
+        scheme="primary"
+        navItems={MENU_DATA.navItems}
+        socialLinks={menuSocialLinks}
+      >
+        <Menu.Logo scheme="primary" />
+        <Menu.Nav scheme="primary" navItems={MENU_DATA.navItems} />
+        <Menu.Social scheme="primary" socialLinks={menuSocialLinks} />
+        <Menu.Cta scheme="primary" />
+      </Menu.Root>
+
+      <MarketplaceHeader />
+
+      <MarketplaceGrid partners={MARKETPLACE_PARTNERS} />
+    </>
+  );
 }
