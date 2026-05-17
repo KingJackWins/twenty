@@ -135,8 +135,11 @@ export function PartnerCard({ partner, index }: PartnerCardProps) {
   const headingId = `partner-card-heading-${partner.slug}`;
   const style: PartnerCardStyle = { '--partner-card-index': index };
 
-  const primaryGeoLabel = i18n._(SERVED_GEO_LABELS[partner.servedGeos[0]]);
-  const countryLine = `${partner.primaryCountry.toUpperCase()} · ${primaryGeoLabel.toUpperCase()}`;
+  const firstGeo = partner.servedGeos[0];
+  const primaryGeoLabel = firstGeo ? i18n._(SERVED_GEO_LABELS[firstGeo]) : '';
+  const countryLine = primaryGeoLabel
+    ? `${partner.primaryCountry.toUpperCase()} · ${primaryGeoLabel.toUpperCase()}`
+    : partner.primaryCountry.toUpperCase();
 
   return (
     <CardArticle aria-labelledby={headingId} style={style}>
@@ -150,7 +153,7 @@ export function PartnerCard({ partner, index }: PartnerCardProps) {
 
       <Introduction>{partner.introduction}</Introduction>
 
-      <Divider aria-hidden />
+      <Divider aria-hidden="true" />
 
       <ChipRows>
         <PartnerChipRow

@@ -47,7 +47,7 @@ export function PartnerAvatar({ name, slug }: PartnerAvatarProps) {
   const initials = pickInitials(name);
 
   return (
-    <AvatarBlock aria-hidden style={{ backgroundColor }}>
+    <AvatarBlock aria-hidden="true" style={{ backgroundColor }}>
       {initials}
     </AvatarBlock>
   );
