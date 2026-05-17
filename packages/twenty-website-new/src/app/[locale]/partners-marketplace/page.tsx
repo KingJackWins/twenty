@@ -9,7 +9,6 @@ import { theme } from '@/theme';
 import { buildRouteMetadata } from '@/lib/seo';
 import { getPartners } from '@/lib/twenty-api';
 
-import { MARKETPLACE_PARTNERS } from './marketplace.data';
 import { MarketplaceGrid, MarketplaceHeader } from './components';
 
 export const generateMetadata = buildRouteMetadata('partnersMarketplace');
@@ -28,12 +27,6 @@ export default async function PartnersMarketplacePage({
   ]);
   const menuSocialLinks = mergeSocialLinkLabels(MENU_DATA.socialLinks, stats);
 
-  const liveslugs = new Set(livePartners.map((p) => p.slug));
-  const partners = [
-    ...livePartners,
-    ...MARKETPLACE_PARTNERS.filter((p) => !liveslugs.has(p.slug)),
-  ];
-
   return (
     <>
       <Menu.Root
@@ -50,7 +43,7 @@ export default async function PartnersMarketplacePage({
 
       <MarketplaceHeader />
 
-      <MarketplaceGrid partners={partners} />
+      <MarketplaceGrid partners={livePartners} />
     </>
   );
 }
