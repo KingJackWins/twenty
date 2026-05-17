@@ -13,11 +13,7 @@ jest.mock('next/navigation', () => ({
 
 type FilterStateResult = ReturnType<typeof useFilterState>;
 
-function Capture({
-  onCapture,
-}: {
-  onCapture: (s: FilterStateResult) => void;
-}) {
+function Capture({ onCapture }: { onCapture: (s: FilterStateResult) => void }) {
   const state = useFilterState();
   onCapture(state);
   return null;
