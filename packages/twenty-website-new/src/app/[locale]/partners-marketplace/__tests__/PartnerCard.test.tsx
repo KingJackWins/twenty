@@ -22,10 +22,10 @@ describe('PartnerCard', () => {
     expect(html).toMatch(new RegExp(`<h3[^>]*>${partner.name}</h3>`, 'i'));
   });
 
-  it('renders the country eyebrow with primary country', () => {
+  it('renders the geo eyebrow with the first served region', () => {
     const html = renderCard(0);
     const partner = MARKETPLACE_PARTNERS[0];
-    expect(html).toContain(partner.primaryCountry.toUpperCase());
+    expect(html).toContain(partner.servedGeos[0]);
   });
 
   it('renders the full introduction text', () => {

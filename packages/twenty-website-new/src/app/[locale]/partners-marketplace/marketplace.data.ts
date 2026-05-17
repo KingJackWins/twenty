@@ -12,7 +12,6 @@ export type SpokenLanguage =
 export type MarketplacePartner = {
   slug: string;
   name: string;
-  primaryCountry: string;
   introduction: string;
   calendlyLink: string;
   deploymentExpertise: readonly DeploymentExpertise[];
@@ -28,7 +27,6 @@ export const MARKETPLACE_PARTNERS: readonly MarketplacePartner[] = [
   {
     slug: 'nine-dots-ventures',
     name: 'Nine Dots Ventures',
-    primaryCountry: 'France',
     introduction:
       'Boutique CRM implementer specialising in real-estate workflows and WhatsApp inbox automation. Hands-on deployments across France and the Mediterranean.',
     calendlyLink: CALENDLY_PLACEHOLDER,
@@ -39,7 +37,6 @@ export const MARKETPLACE_PARTNERS: readonly MarketplacePartner[] = [
   {
     slug: 'elevate-consulting',
     name: 'Elevate Consulting',
-    primaryCountry: 'United States',
     introduction:
       'Revenue-operations partner for B2B SaaS teams scaling from seed to Series C. Migrates legacy CRMs onto Twenty without losing pipeline history.',
     calendlyLink: CALENDLY_PLACEHOLDER,
@@ -50,7 +47,6 @@ export const MARKETPLACE_PARTNERS: readonly MarketplacePartner[] = [
   {
     slug: 'w3villa-technologies',
     name: 'W3Villa Technologies',
-    primaryCountry: 'India',
     introduction:
       'Engineering-heavy partner running large self-hosted Twenty deployments. Strong on custom objects, RLP, and bespoke logic functions.',
     calendlyLink: CALENDLY_PLACEHOLDER,
@@ -61,7 +57,6 @@ export const MARKETPLACE_PARTNERS: readonly MarketplacePartner[] = [
   {
     slug: 'act-education',
     name: 'Act Education',
-    primaryCountry: 'Germany',
     introduction:
       'CRM partner for European education providers. Compliance-first self-hosted deployments with German data-residency requirements.',
     calendlyLink: CALENDLY_PLACEHOLDER,
@@ -72,7 +67,6 @@ export const MARKETPLACE_PARTNERS: readonly MarketplacePartner[] = [
   {
     slug: 'netzero-systems',
     name: 'NetZero Systems',
-    primaryCountry: 'Brazil',
     introduction:
       'Latin America go-to-market partner for climate-tech and renewable-energy companies. Bilingual deal desks running on Twenty Cloud.',
     calendlyLink: CALENDLY_PLACEHOLDER,
@@ -83,7 +77,6 @@ export const MARKETPLACE_PARTNERS: readonly MarketplacePartner[] = [
   {
     slug: 'meridian-craft',
     name: 'Meridian Craft',
-    primaryCountry: 'Singapore',
     introduction:
       'APAC implementation studio for fintech and logistics. Multilingual support across English and Chinese, with on-the-ground delivery teams in Singapore and Cape Town.',
     calendlyLink: CALENDLY_PLACEHOLDER,

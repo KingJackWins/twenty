@@ -7,6 +7,7 @@ import { mergeSocialLinkLabels } from '@/lib/community/merge-social-link-labels'
 import { Menu, MENU_DATA } from '@/sections/Menu';
 import { theme } from '@/theme';
 import { buildRouteMetadata } from '@/lib/seo';
+import { getPartners } from '@/lib/twenty-api';
 
 import { MARKETPLACE_PARTNERS } from './marketplace.data';
 import { MarketplaceGrid, MarketplaceHeader } from './components';
@@ -20,11 +21,18 @@ type PartnersMarketplacePageProps = {
 export default async function PartnersMarketplacePage({
   params,
 }: PartnersMarketplacePageProps) {
-  const [, stats] = await Promise.all([
+  const [, stats, livePartners] = await Promise.all([
     getRouteI18n(params),
     fetchCommunityStats(),
+    getPartners(),
   ]);
   const menuSocialLinks = mergeSocialLinkLabels(MENU_DATA.socialLinks, stats);
+
+  const liveslugs = new Set(livePartners.map((p) => p.slug));
+  const partners = [
+    ...livePartners,
+    ...MARKETPLACE_PARTNERS.filter((p) => !liveslugs.has(p.slug)),
+  ];
 
   return (
     <>
@@ -42,7 +50,7 @@ export default async function PartnersMarketplacePage({
 
       <MarketplaceHeader />
 
-      <MarketplaceGrid partners={MARKETPLACE_PARTNERS} />
+      <MarketplaceGrid partners={partners} />
     </>
   );
 }

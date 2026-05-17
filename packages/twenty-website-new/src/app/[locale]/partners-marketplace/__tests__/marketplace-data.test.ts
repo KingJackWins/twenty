@@ -16,7 +16,6 @@ describe('MARKETPLACE_PARTNERS seed data', () => {
     for (const partner of MARKETPLACE_PARTNERS) {
       expect(partner.name).not.toBe('');
       expect(partner.introduction).not.toBe('');
-      expect(partner.primaryCountry).not.toBe('');
       expect(partner.calendlyLink).not.toBe('');
       expect(partner.deploymentExpertise.length).toBeGreaterThan(0);
       expect(partner.servedGeos.length).toBeGreaterThan(0);
