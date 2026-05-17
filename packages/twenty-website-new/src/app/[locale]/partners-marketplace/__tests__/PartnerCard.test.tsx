@@ -1,13 +1,15 @@
 import { renderToStaticMarkup } from 'react-dom/server';
 
+import { i18n } from '@lingui/core';
+import { I18nProvider } from '@lingui/react';
 import { SOURCE_LOCALE } from 'twenty-shared/translations';
 
-import { setServerI18n } from '@/lib/i18n/utils/set-server-i18n';
 import type { MarketplacePartner } from '@/lib/twenty-api';
 import { PartnerCard } from '../components/PartnerCard';
 
 beforeAll(() => {
-  setServerI18n(SOURCE_LOCALE);
+  i18n.load(SOURCE_LOCALE, {});
+  i18n.activate(SOURCE_LOCALE);
 });
 
 const FIXTURE: MarketplacePartner = {
@@ -21,7 +23,11 @@ const FIXTURE: MarketplacePartner = {
 };
 
 const renderCard = () =>
-  renderToStaticMarkup(<PartnerCard partner={FIXTURE} index={0} />);
+  renderToStaticMarkup(
+    <I18nProvider i18n={i18n}>
+      <PartnerCard partner={FIXTURE} index={0} />
+    </I18nProvider>,
+  );
 
 describe('PartnerCard', () => {
   it('renders the partner name as the article heading', () => {

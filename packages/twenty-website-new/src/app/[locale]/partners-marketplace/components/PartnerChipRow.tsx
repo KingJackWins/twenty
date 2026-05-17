@@ -1,7 +1,11 @@
+'use client';
+
 import type { MessageDescriptor } from '@lingui/core';
-import { getServerI18n } from '@/lib/i18n/utils/get-server-i18n';
+import { useLingui } from '@lingui/react';
 import { theme } from '@/theme';
 import { styled } from '@linaria/react';
+
+import { chipBaseStyles } from './chip-styles';
 
 const Row = styled.dl`
   align-items: flex-start;
@@ -46,19 +50,6 @@ const ChipList = styled.ul`
   padding: 0;
 `;
 
-const Chip = styled.li`
-  border: 1px solid ${theme.colors.primary.border[10]};
-  border-radius: ${theme.radius(4)};
-  color: ${theme.colors.primary.text[80]};
-  font-family: ${theme.font.family.mono};
-  font-size: ${theme.font.size(3)};
-  font-weight: ${theme.font.weight.medium};
-  letter-spacing: 0.04em;
-  line-height: ${theme.lineHeight(4)};
-  padding: ${theme.spacing(1)} ${theme.spacing(2.5)};
-  text-transform: uppercase;
-`;
-
 type PartnerChipRowProps<TValue extends string> = {
   label: MessageDescriptor;
   values: readonly TValue[];
@@ -70,7 +61,7 @@ export function PartnerChipRow<TValue extends string>({
   values,
   valueLabels,
 }: PartnerChipRowProps<TValue>) {
-  const i18n = getServerI18n();
+  const { i18n } = useLingui();
 
   return (
     <Row>
@@ -78,7 +69,9 @@ export function PartnerChipRow<TValue extends string>({
       <ChipListWrapper>
         <ChipList>
           {values.map((value) => (
-            <Chip key={value}>{i18n._(valueLabels[value])}</Chip>
+            <li key={value} className={chipBaseStyles}>
+              {i18n._(valueLabels[value])}
+            </li>
           ))}
         </ChipList>
       </ChipListWrapper>

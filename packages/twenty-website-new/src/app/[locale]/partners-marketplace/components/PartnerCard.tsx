@@ -1,6 +1,8 @@
+'use client';
+
 import { msg } from '@lingui/core/macro';
+import { useLingui } from '@lingui/react';
 import { LinkButton } from '@/design-system/components';
-import { getServerI18n } from '@/lib/i18n/utils/get-server-i18n';
 import { theme } from '@/theme';
 import { styled } from '@linaria/react';
 import type { CSSProperties } from 'react';
@@ -131,7 +133,7 @@ type PartnerCardProps = {
 };
 
 export function PartnerCard({ partner, index }: PartnerCardProps) {
-  const i18n = getServerI18n();
+  const { i18n } = useLingui();
   const headingId = `partner-card-heading-${partner.slug}`;
   const style: PartnerCardStyle = { '--partner-card-index': index };
 

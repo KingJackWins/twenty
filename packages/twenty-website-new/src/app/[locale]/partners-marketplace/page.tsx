@@ -1,3 +1,7 @@
+import { Suspense } from 'react';
+
+import type { Metadata } from 'next';
+
 import { fetchCommunityStats } from '@/lib/community/fetch-community-stats';
 import {
   getRouteI18n,
@@ -9,9 +13,23 @@ import { theme } from '@/theme';
 import { buildRouteMetadata } from '@/lib/seo';
 import { getPartners } from '@/lib/twenty-api';
 
-import { MarketplaceGrid, MarketplaceHeader } from './components';
+import { MarketplaceHeader } from './components';
+import { MarketplaceClient } from './MarketplaceClient';
 
-export const generateMetadata = buildRouteMetadata('partnersMarketplace');
+const baseGenerateMetadata = buildRouteMetadata('partnersMarketplace');
+
+export const generateMetadata = async (
+  ...args: Parameters<typeof baseGenerateMetadata>
+): Promise<Metadata> => {
+  const base = await baseGenerateMetadata(...args);
+  return {
+    ...base,
+    alternates: {
+      ...base.alternates,
+      canonical: '/partners-marketplace',
+    },
+  };
+};
 
 type PartnersMarketplacePageProps = {
   params: Promise<LocaleRouteParams>;
@@ -43,7 +61,9 @@ export default async function PartnersMarketplacePage({
 
       <MarketplaceHeader />
 
-      <MarketplaceGrid partners={livePartners} />
+      <Suspense fallback={null}>
+        <MarketplaceClient partners={livePartners} />
+      </Suspense>
     </>
   );
 }
