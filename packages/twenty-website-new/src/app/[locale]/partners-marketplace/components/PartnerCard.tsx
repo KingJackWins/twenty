@@ -136,7 +136,9 @@ export function PartnerCard({ partner, index }: PartnerCardProps) {
   const style: PartnerCardStyle = { '--partner-card-index': index };
 
   const firstGeo = partner.servedGeos[0];
-  const countryLine = firstGeo ? i18n._(SERVED_GEO_LABELS[firstGeo]).toUpperCase() : '';
+  const countryLine = firstGeo
+    ? i18n._(SERVED_GEO_LABELS[firstGeo]).toUpperCase()
+    : '';
 
   return (
     <CardArticle aria-labelledby={headingId} style={style}>
